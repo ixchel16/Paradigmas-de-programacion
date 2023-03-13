@@ -1,0 +1,25 @@
+
+                . ................................
+		.                                .
+		. ESTE ES EL INSTRUCTIVO PARA VI .
+                ..................................
+
+COMANDOS:
+
+- R --------> escribir remplazando 
+- esc ------> salir del modo escritura
+- i --------> escribir insertando
+- o --------> abrir renglon abajo 
+- O --------> abrir renglon arriba
+- x --------> borrar
+- dd -------> borrar todo el renglon 
+- D --------> borrar renglon desde este espacio
+- :w -------> guardar
+- :wq ------> guardar y salir
+- q! -------> salir sin guardar
+- /palabra -> buscar palabra 
+- n --------> buscar la siguiente
+- N --------> buscar la anterior
+- :numero --> va a la linea del numero 
+- :$ -------> va a la ultima linea
+
