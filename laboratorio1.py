@@ -46,10 +46,10 @@ print   ('Vamos a sumar esto' + 'con esto otro')
 #Continuar una instruccion en varios renglones
 #============================================
 
-if 100 > 999 and \ # \ es para saltar la linea y seguir la misma instruccion#
+if 100 > 999 and \
     200 <= 300 and \
     True != False:
-        print('Hello world!')
+    print('Hello world!')
 
 
 #======================================
@@ -75,9 +75,9 @@ print (matriz)
 
 
 #================================================================
-# Identación estricta para procesos dependientes de: (dos puntos)
+# Identación estricta para procesos dependientes de: (dos puntos) con dos puntos misma identacion
 #================================================================
-if 10>5;
+if 10>5:
     print ("diez es mayor que cinco")
     print ("otra identación")
 
@@ -85,5 +85,59 @@ for i in list:
         print (i)
         print("ok")
 
-if 10>5; 
+if 10>5: 
     print ("verdadero")
+
+if 10<20:
+    print ("verdadero")
+
+elif 5>3: #comienza segundo condicional
+    print ("Esto no se imprimirá")
+
+else:
+  print ("Aquí nunca llega")
+
+#==========
+# FUnciones
+#==========
+
+def say_hello(name):
+    print ("hello", name)
+    print ("welcome to python Tutorials")
+
+say_hello("Julián")
+
+
+#==================================================================================================
+#                                                PARTE 2 VIDEO UNO
+#==================================================================================================
+
+#--------------------------------------------------
+# INput permite obtener datos del usuario en prompter
+#---------------------------------------------------
+nombre = input("Dame tu nombre: ")
+print("Hola como estás? ", nombre)
+
+
+# exponente **
+# // funcion piso 
+# funciones para transformar numero int() float() complex() 
+# Operaciones abs()  round() pow()
+
+print(round(3.14159,5))
+
+
+#==========================
+# String de varias lineas
+#==========================
+parrafo = """ En el bosque de la china
+la chinita se perdió """
+
+print (parrafo)
+
+
+#============================================
+#La funcion len() obtiene el tamaño del string
+#---------------------------------------------
+
+
