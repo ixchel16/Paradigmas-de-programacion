@@ -69,13 +69,13 @@ print ('Hola ');  print ("tú!");  #se considera mala practica
 # se puede escribir en varios renglones
 #==============================================
 
-list = [1, 2, 3, 4, 
+lista = [1, 2, 3, 4, 
         5, 6, 7, 8, 
         9, 10, 11, 12]
 
 matriz = [[1,2,3,4], [5,6,7,8], [9, 10, 11, 12]]
 
-print (list)
+print (lista)
 print (matriz)
 
 
@@ -86,7 +86,7 @@ if 10>5:
     print ("diez es mayor que cinco")
     print ("otra identación")
 
-for i in list:
+for i in lista:
         print (i)
         print("ok")
 
@@ -201,7 +201,227 @@ print(palabra[0])
 print(palabra[-4])
 
 
-#============================================
+
+# ==========================================================
+#		CONJUNTO DE python
+# ==========================================================
+
+even_nums = {2, 4, 6, 8, 10}	# Conjunto de número pares
+print (even_nums)
+
+# El bool no es parte del conjunto 
+emp = {1, 'Steve', 10.5, True}  # El conjunto de diferentes objetos
+print(emp)
+
+nums = {1, 2, 2, 3, 4, 4, 5, 5}
+print(nums)
+
+
+# -------------------------------------
+# Convertir secuencia a un conjunto
+# NO lo genera en orden
+# -------------------d = {1:'One', 2: 'Two'}
+s = set(d)
+print(s)   # Imprime (1, 2)
+
+s.add(100)
+print(s)  # Imprime (1, 2, 100)
+
+s.remove(100)
+print(s)
+
+s1 = {1, 2, 3, 4, 5}
+s2 = {4, 5, 6, 7, 8}
+
+su = s1|s2   # UNION
+print(su)
+
+s = set('Hello')
+print(s)
+s = set((1, 2, 3, 4, 5))  # tupla a conjunto 
+print(s)
+
+
+# =============================================
+# De diccionario a conjunto : Conjunto de llaves
+# ==============================================
+
+d = {1:'One', 2: 'Two'}
+s = set(d)
+print(s)    # Imprime (1, 2)
+
+s.add(100)
+print(s)    # Imprime (1, 2, 100)
+
+s.remove(100)
+print(s)    # Imprime (1, 2)
+
+s1 = {1, 2, 3, 4, 5}
+s2 = {4, 5, 6, 7, 8}
+
+su = s1|s2   # UNION
+print(su)
+
+si = s1&s2    # INTERSECCION
+print(si)
+
+sr = s1-s2    # Diferencia de conjuntos
+print(sr)
+
+sp = s2 - s1 
+print(sp)
+
+ss = s1^s2      # Diferencia simétrica
+print(ss)
+
+
+# =================================================
+# 		USO DE DICCIONARIOS
+# =================================================
+
+capitals = {"USA": "Washingto D.C", "France": "Paris", "India": "New Delhi"}
+print(capitals)
+
+
+# ------------------------
+#	Llave : valor
+# ------------------------
+
+# Diccionario vacío
+d = {}
+
+# Llave entera, valor string
+numNames={1: "One", 2: "Two", 3: "Three"}
+
+# Lave real, valor string
+decNames={1.5: "One and half", 2.5 : "Two and half", 3.5: "Three and half"}
+
+#Llave tupla, valor string
+items={("parker", "Reynolds", "Camlin"): "pen", ("LG", "Wirlpool", "Samsung"): "Refrigerator"}
+
+# Lave string, valor int
+romaNums = {'I': 1, 'II':2, 'III': 3, 'IV': 4, 'V': 5}
+print(romanNums)
+print(romanNums["I"])
+
+print(capitals.get("India"))
+print(capitals.get("india"))
+
+# Reportar llave y valor
+for k in capitals:
+    print("key = " + k + "Value = " + capitals[K])
+
+#Nuevo dato para el diccionario
+capitals["Mexico"] = "CDMX"
+print(capitals)
+
+# Borrar dato del diccionario
+del capitals["Mexico"]
+print(capitals)
+
+
+# Borrar todo el diccionario
+del capitals
+
+# Reportar llaves
+print(romanNums.keys())
+
+
+# Reportar valores
+print(romanNums.values())
+
+# Juicio de llave (Está o no está la llave en el diccionario)
+print("I" in romanNums)
+print("X" in romanNums)
+print("XX" not in romanNums)
+
+
+# =================================================
+#			LISTAS
+# =================================================
+
+# Las listas puedes ser de objetos diferentes
+
+miprimeralista = []   # Es una lista vacía
+print(miprimeralista)
+
+# ------------------------------------------------
+# 		Llenado de lista
+# ------------------------------------------------
+
+miprimeralista = [1, "Javier", 1.34, "Bosco", "Angel", "Abigail", True]
+print(miprimeralista)
+
+# -----------------------------------------------
+# list : hacer una lista
+# range(i, j): Secuencia de i hasta j-1
+# --------------------------------------------
+
+nums = list(range(1,61))
+
+for i in nums:
+    print(i)
+
+
+# ------------------------------------
+# Incluir nuevos elementos en la lista
+# ------------------------------------
+
+nums.append(61)
+nums.append(52)
+nums.append(61)
+print(nums)
+
+# ------------------------------------
+# Quitar elementos de la lista
+# ------------------------------------
+
+nums.remove(61)
+print(nums)
+
+
+# ------------------------------
+# Quitar elementos con índice i
+# ------------------------------
+
+i = 61
+del nums[i]
+print(nums)
+
+
+# --------------------------------
+# BORRAR  la lista
+# ---------------------------------
+del nums
+
+
+
+# -----------------------------
+# Sumar listas
+# ----------------------------
+L1 = [1, 2, 3]
+L2 = [4, 5, 6]
+print(L1+L2)
+
+
+# -------------------------------
+# 	LLENADO A MANO
+# ---------------------------------
+
+potencial = []
+for i in range(0,10000):
+    potencial.append(float(i))
+print(potencial[100])
+
+
+# ---------------------------------------
+#	Generar una tupla con la lista
+# ----------------------------------------
+potencial = tuple(potencial)
+print(potencial[100])
+
+
+#==========================================
 #		CONDICIONLAES
 #============================================
 
@@ -236,16 +456,18 @@ total = precio*cantidad
 #========================
 # Condicionlaes anidados
 #=======================
+
 if total > 100:
-    if total > 500:
-	print("Total es mayor que 500")
-    else:
-	if total < 500 and total > 400:
-	    print("Total es menor que 500 pero mayor que 400")
-	elif total < 500 and total > 300:
-	    print("Total entre 300 y 500")
+	if total > 500:
+		print("Total es mayor que 500")
 	else:
-	    print("Total entre 100 y 300")
+	
+		if total < 500 and total > 400:
+			print("Total es menor que 500 pero mayor que 400")
+		elif total < 500 and total > 300:
+			print("Total entre 300 y 500")
+		else:
+			print("Total entre 100 y 300")
 
 #--------------------------------------
 #	Condicional de igualdad ==
@@ -267,10 +489,46 @@ while num < 5:
     print("Num = ", num)
 
 num = 0
-
 while num < 5:
-    num+=1
+	num += 1		# num += 1 Es lo mismo que num = num + 1
+	print("num = ", num)
+	if num == 3:
+		break		# break  Condicion antes de salir del bucle
 
-# num += 1 Es lo mismo que num = num + 1
+
+num = 0
+while num < 5:
+	num += 1
+	if num > 3:
+		continue	# Evitar lo que sigue y continuar iteracion
+
+print("num = ", num)
+
+# ==================================
+#	 BUCLE SOBRE LISTA
+# =================================
+
+nums = [10, 20, 30, 40, 50]
+
+for i in nums:
+    print(i)
+
+
+# ==================================
+#        BUCLE SOBRE UN STRING
+# ==================================
+for char in 'Hello':
+    print (char) 	# Imprime caracter por caracter
+
+
+# ========================================
+#        BUCLE SOBRE UN DICCIONARIO
+#		items = elementos
+# =========================================
+
+numNames = {1:'One', 2: 'Two', 3: 'Three'}
+for pair in numNames.items():
+    print(pair)			# Imprime tipo (1, 'One')
+
 
 
