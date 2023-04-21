@@ -207,7 +207,7 @@ print(palabra[-4])
 # ==========================================================
 
 even_nums = {2, 4, 6, 8, 10}	# Conjunto de número pares
-print (even_nums)
+print(even_nums)
 
 # El bool no es parte del conjunto 
 emp = {1, 'Steve', 10.5, True}  # El conjunto de diferentes objetos
@@ -221,8 +221,10 @@ print(nums)
 # Convertir secuencia a un conjunto
 # NO lo genera en orden
 # -------------------d = {1:'One', 2: 'Two'}
-s = set(d)
-print(s)   # Imprime (1, 2)
+s = set('Hello')
+print(s)
+s = set((1,2,3,4,5)) # tupla a conjunto
+print(s)
 
 s.add(100)
 print(s)  # Imprime (1, 2, 100)
@@ -278,7 +280,6 @@ print(ss)
 # =================================================
 # 		USO DE DICCIONARIOS
 # =================================================
-
 capitals = {"USA": "Washingto D.C", "France": "Paris", "India": "New Delhi"}
 print(capitals)
 
@@ -300,16 +301,16 @@ decNames={1.5: "One and half", 2.5 : "Two and half", 3.5: "Three and half"}
 items={("parker", "Reynolds", "Camlin"): "pen", ("LG", "Wirlpool", "Samsung"): "Refrigerator"}
 
 # Lave string, valor int
-romaNums = {'I': 1, 'II':2, 'III': 3, 'IV': 4, 'V': 5}
+romanNums = {'I': 1, 'II':2, 'III': 3, 'IV': 4, 'V': 5}
 print(romanNums)
 print(romanNums["I"])
 
 print(capitals.get("India"))
 print(capitals.get("india"))
 
-# Reportar llave y valor
+# Reportar llave y valor 
 for k in capitals:
-    print("key = " + k + "Value = " + capitals[K])
+    print("key = " + k + ", Value = " + capitals[k])
 
 #Nuevo dato para el diccionario
 capitals["Mexico"] = "CDMX"
@@ -531,4 +532,107 @@ for pair in numNames.items():
     print(pair)			# Imprime tipo (1, 'One')
 
 
+# =====================================================================
+# INICIO DE SEGUNDA PARTE DEL TERCER VIDEO
+# ====================================================================
+
+# ================================================
+#            F U N C I O N E S
+# ===============================================
+
+
+# ------------------------------------------
+#   Primera funcion
+# ------------------------------------------
+
+def saludo():
+    # ---------------------------------
+    # Documentacion rapida de la funcion
+    # ----------------------------------
+    """ Esta funcion saluda """
+    print(' ¡Quiúboles!, ¿cómo estás?')
+
+#
+# Llamado de la funcion
+# -----------------------
+saludo()
+
+
+# ---------------------------
+# Se ejecuta pero no se asigna
+# ----------------------------
+salida = saludo()
+
+# ----------------
+# Esto no funciona
+# ----------------
+print(salida)
+
+
+# --------------------
+# Mostrar documentacion
+# ----------------------
+# help(saludo)
+
+
+# -------------------------
+#   Funcion con argumento
+# -------------------------
+def salu2(nombre):
+    "Esta funcion te saluda por tu nombre"
+    print('Que onda ese', nombre, "!")
+salu2("Julian")
+salu2("Ángel")
+
+
+# =======================================
+# ahorra el trabajo del interprete
+# nombre : str ls variable nombre es un str
+# ========================================
+def saludos(nombre:str):
+    "Esta funcion te salluda por tu nombre estrictamente"
+    print("Que onda ese", nombre, "!")
+saludos("Julian")
+a = 123
+print(type(a))
+saludos(a)
+
+# ==================================
+#   Función con muchos argumentos
+# =================================
+
+def saludos_multiples(nombre1, nombre2, nombre3):
+    "Esta función saluda a 3 personas al mismo tiempo"
+    print("Hola", nombre1,",", nombre2, "y", nombre3)
+saludos_multiples("Hugo", "Paco", "Luis")
+
+# ===========================================
+# Funcion con cualquier número de argumentos
+# ===========================================
+
+def muchos_saludos(*nombres):
+    "Esta funcion saluda a todos los que quieras"
+    i = 0
+    # ------------------------------------
+    # end= es para ponerlo de corrido
+    # -----------------------------------
+    print("Hola ", end="")
+    while len(nombres) > i:
+        # Ultimo nombre
+        if (i == len(nombres)-1):
+            print(nombres[i])
+        else:
+            # Cualquier otro nombre
+            print(nombres[i], end= ", ")
+        i+=1
+
+muchos_saludos("Bosco", "Angel", "David", "Tamara", "MIli", "Edwin", "Lev", "Luis", "Abigail")
+
+def greet(firstname, lastname):
+    print("Hello", firstname, lastname)
+
+# ------------------------------------------------
+#   Llamar a la funcion con argumentos en desorden
+# ------------------------------------------------
+#greet(lastname='Jobs', fistname='Steve') # Se puede especificar las variables en 
 
