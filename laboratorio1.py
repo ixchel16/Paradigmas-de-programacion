@@ -634,5 +634,80 @@ def greet(firstname, lastname):
 # ------------------------------------------------
 #   Llamar a la funcion con argumentos en desorden
 # ------------------------------------------------
-#greet(lastname='Jobs', fistname='Steve') # Se puede especificar las variables en 
+greet(lastname='Jobs', firstname='Steve') # Se puede especificar las variables en 
+
+# --------------------------------------------------
+#        Funcion con argumentos escondidos **
+# --------------------------------------------------
+
+def greet(**person):
+    # ---------------------------------------------------
+    #  persona tiene características firstname y lastname
+    # ---------------------------------------------------
+    print('Hello', person['firstname'], person['lastname'])
+
+greet(firstname= 'Steve', lastname= 'Jobs')
+greet(lastname= 'Jobs', firstname= 'Steve')
+greet(firstname= 'Bill', lastname= 'Gates', age =55) #Se pueden pasar mas parametros de los necesarios
+
+# -------------------------------------
+#    Funcion con valores por defecto
+# -------------------------------------
+def greet(name = "Guest"):
+    print('Hello', name)
+
+greet() #se utiliza el valor dado de antemano
+greet('Steve')
+
+# ----------------------------------
+#        Funcion con resultado
+# ----------------------------------
+def suma(a,b):
+    return a + b
+
+# ---------------------------------------
+#          Programacion funcional 
+#     Se pueden funciones en funciones
+# ----------------------------------------
+total = suma(5, suma(10,20))
+print(total)
+
+
+# ---------------------------------------------------
+#                     Cálculo de lambda
+#   nombre de la función = lambda variable : función
+# ---------------------------------------------------
+x_al_cuadrado = lambda x : x * x
+al = x_al_cuadrado(5)
+print(al)
+
+
+# ------------------------------------------
+#       Lambda de varias variables
+# ------------------------------------------
+suma = lambda x1, x2, x3: x1+x2+x3
+print(suma(99,98,97))
+
+sumas = lambda *x: x[0] + x[1] + x[2] + x[3]
+print(sumas(100, 200, 300, 400))
+
+# -----------------------------------------
+#         Uso de una función anonima
+#  El argumento va afuera entre parentesis
+# ------------------------------------------
+print((lambda x: x*x)(6)) #Función anónima
+
+
+# ---------------------------------
+#   Función con variable global
+#        EVITE EL EXCESO !!!!
+# --------------------------------
+name = 'Steve'
+def greet():
+    global  name #para utiilizar ua variable global (que viene del bloque)
+    name = 'Bill'
+    print('Hello ', name)
+
+greet()
+
 
