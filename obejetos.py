@@ -254,9 +254,40 @@ class C:
         self.Aa = A(1.0, 2.0, 3.0)
 
     def sumar_todo(self):
-        x: float = self.d + self.e + self.Aa + self.Aa.b
+        x: float = self.d + self.e + self.Aa.a + self.Aa.b
         return x
 
 
+# ================================
+#           COMPOSICIÓN
+#   Contiene otro objeto dentro
+# ================================
+objetoC = C(4.0, 5.0)
+print(objetoC.sumar_todo())
 
 
+# ------------------------------------------------
+#	Objeto D tiene dos reales un objeto A
+#	Definido por fuera
+# ------------------------------------------------
+class D:
+    __d: float = 0.0
+    __e: float = 0.0
+    __Aa: A = None
+
+    def __init__(self, d:float, e:float, Aa:A):
+        self.d = d
+        self.e = e
+        self.Aa= Aa
+
+    def sumar_todo(self):
+        x: float = self.d + self.e + self.Aa.a + self.Aa.b
+        return x
+
+
+# ==========================================
+#                AGREGACIÓN
+#    Construye el objeto agregado por fuera
+# ==========================================
+objetoD = D(4.0, 5.0, objetoA)
+print(objetoD.sumar_todo())
