@@ -1,5 +1,5 @@
-from aplicaciones.modelos.usuario import Usuario
-from aplicaciones.repositorio.repositoriodeusuarios import RepositorioDeUsuarios
+from aplicacion.modelos.usuario import Usuario
+from aplicacion.repositorio.repositoriodeusuarios import RepositorioDeUsuarios
 
 # =============================
 # 	Clase storemanager
@@ -15,7 +15,7 @@ class ManejoDeInscripciones:
     @staticmethod
     def inscribirUsuario(usuario: Usuario, repositorioDeUsuarios: RepositorioDeUsuarios) -> None:
         print("--------> Guardando usuario ... \n")
-        repositorioDeUsuario.abrir()
-        repositorioDeUsuario.guardar(usuario)
-        repositorioDeUsuario.cerrar()
+        repositorioDeUsuarios.abrir()
+        repositorioDeUsuarios.guardar(usuario)
+        repositorioDeUsuarios.cerrar()
 

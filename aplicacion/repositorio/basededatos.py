@@ -20,10 +20,10 @@ class BaseDeDatos(RepositorioDeUsuarios):
     def guardar(mi, usuario:Usuario) -> None:
         userElements = { "nombre": usuario.getNombre(),
                          "apellido": usuario.getApellido(),
-                          "edad": usuario.getEdad()}
+                         "edad": usuario.getEdad()}
         print(f"Guardando el usuario en la basde de datos {usuario.getNombre()}\n")
-        print(f"INSERTAR DATOS DEL USUARIO('{userElements['nomre']}', '{userElements['apellido']}', {userElements['edad']})")
+        print(f"INSERTAR DATOS DEL USUARIO('{userElements['nombre']}', '{userElements['apellido']}', {userElements['edad']})")
 
     def cerrar(mi) -> None:
-        print("Cerrando a conexión")
+        print("Cerrando la conexión")
 

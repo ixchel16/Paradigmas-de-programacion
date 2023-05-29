@@ -1,4 +1,4 @@
-from aplicaion.modelos.usuario import Usuario
+from aplicacion.modelos.usuario import Usuario
 
 # ==============================
 # Este objeto es una interface

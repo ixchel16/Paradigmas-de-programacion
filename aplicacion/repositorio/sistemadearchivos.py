@@ -15,7 +15,7 @@ class SistemaDeArchivos(RepositorioDeUsuarios):
 
     def guardar(mi, usuario:Usuario) -> None:
         xml = f"</root></name>{usuario.getNombre()}</name></lastName>{usuario.getApellido()}</lastName></age>{usuario.getEdad()}</age></root>"
-       print(f"Guardando usuario en el archivo :{mi.__directorio}/{usuario.getNombre()}")
+        print(f"Guardando usuario en el archivo :{mi.__directorio}/{usuario.getNombre()}")
         print(xml)
 
     def cerrar(mi) -> None:
