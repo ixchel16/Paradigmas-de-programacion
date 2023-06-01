@@ -12,7 +12,7 @@ class BaseDeDatos(RepositorioDeUsuarios):
     def __init__(mi, host:str, user:str, password:str):
         mi.__host = host
         mi.__user = user
-        mi._password = password
+        mi.__password = password
 
     def abrir(mi) -> None:
         print(f"Abriendo la conexion a la base de datos: {mi.__host}:{mi.__user}@{mi.__password}")
