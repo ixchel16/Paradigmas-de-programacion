@@ -3,15 +3,16 @@
 # ======================
 
 class ClienteBancario:
-     __nombres:str = None
-     __apellidos:str = None
-     __edad:int = 0
-     __balanceDeCuenta:float = 0.0
+    __nombres:str = None
+    __apellidos:str = None
+    __edad:int = 0
+    __balanceDeCuenta:float = 0.0
 
-    def __init__(self, nombres:str, apelliddos:str, edad:int=0, balanceDeCuenta:float=0.0):
+    def __init__(self, nombres:str, apellidos:str, edad:int=0, balanceDeCuenta:float=0.0):
         self.__validarEdad(edad)
-        self.__validarCantida(balanceDeCuenta)
+        self.__validarCantidad(balanceDeCuenta)
         self.nombres = nombres
+        self.apellidos = apellidos
         self.__edad = edad
         self.balanceDeCuenta = balanceDeCuenta
 
@@ -34,7 +35,7 @@ class ClienteBancario:
             raise Exception("Es menor de edad")
 
     def imprimirInfo(self) -> str:
-        return "Nombre: " + self.getNombreCompleto() + ", Edad: " + str(self.__edad) + "Balance: " + str(self.__balanceDeCuenta)
+        return "Nombre: " + self.getNombreCompleto() + ", Edad: " + str(self.__edad) + ", Balance: " + str(self.__balanceDeCuenta)
 
     # -----------------------------------------------
     # Métodoo privado que checa si el balance es negativo
@@ -54,3 +55,4 @@ class ClienteBancario:
         self.__validarCantidad(cantidadFinal)
         self.__balanceDeCuenta = cantidadFinal
         self.__mandarEmail("- - - - retirando dinero - - - -", "se retiró" + str(cantidad))
+        self.__enviarBalanceAlBanco(cantidad)
