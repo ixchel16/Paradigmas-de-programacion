@@ -11,13 +11,13 @@ import numpy as np
 # ======================
 class Curva:
 
-	''' ==================================================
-	    Curva construye la curva que pasa por los puntos X		    ==================================================
+    ''' ========================================================
+	    Curva construye la curva que pasa por los puntos X
 	    Parámetros: x   coordenadas ordenadas ((x1),(x2),..)
 	                f   propiedaddes (f1(x), f2(x), ....)
 			dim dimensiones
-	    ==================================================
-	'''
+        =========================================================
+    '''
     # ---------------
     #	Constructor
     # ---------------
@@ -25,7 +25,7 @@ class Curva:
         
         s.x = np.array(x, dtype=np.float64)
         s.dim = dim
-        s.n:nop.int32 = int(leng(s.x)/s.dim)   #Número de punto
+        s.n:nop.int32 = int(len(s.x)/s.dim)   #Número de punto
         s.l = []                               #Longitud sobre la curva
         s.lista_de_puntos()
         s.longitud()
@@ -36,7 +36,7 @@ class Curva:
     # ---------------
     def lista_de_puntos(s) -> str:
         
-        print("Número de puntos = {str(s.n)}")
+        print(f"Número de puntos = {str(s.n)}")
 
         # Formato de datos
         s.formato = ""
@@ -54,19 +54,19 @@ class Curva:
     # ----------------------
     # Longitud punto a punto
     # ----------------------
-    def longitudes(s) -> None:
-        t: np.float64 = 0.0
+    def longitud(s) -> None:
+        t:np.float64 = 0.0
         for i in range(0, s.n):
             ip1 = i + 1
             if i == s.n - 1:
                 ip1 = 0
-            d: np.float64 = (s.x[ip1]- s.x[i])**2
+            d:np.float64 = (s.x[ip1] - s.x[i])**2
             for j in range(1, s.dim):
-                d += (s.x[ip1 + j*s.n]- s.x[i+j*s.n])**2
+                d += (s.x[ip1 + j*s.n] - s.x[i+j*s.n])**2
             t += d**0.5
             s.l.append(t)
-    s.L = t
-    s.dx = t/float(s.n)
+        s.L = t
+        s.dx = t/float(s.n)
 
     # ==============
     # Interpolacion
@@ -74,78 +74,107 @@ class Curva:
     def interpolacion(s, p:int=0, r:float = 0.0) -> list:
         ''' r es el parametro sobre la curva [0, 1)
 	    p es la suavidad de la curva '''
-        rdx: np.float64 = 1.0/s.dx
-        xi: float = []
-        i: np.int32 = int(r*s.L*rdx)
-        a: np.float64 = r*s.L*rdx - float(i) #Distancia normalizada
+        rdx:np.float64 = 1.0/s.dx
+        xi:float = []
+        i:np.int32 = int(r*s.L*rdx)
+        a:np.float64 = r*s.L*rdx - float(i) #Distancia normalizada
+    
         # -----------------------
         # Interpolacion lineal C0
         # -----------------------
         if p == 0:
-            ip1: np.int32 = i + 1
+            ip1:np.int32 = i + 1
             if i == s.n-1:
                 ip1 = 0
-            xi.append(a*S.x[ip1])+ (1.0-a)*s.x[i+j*s.n]
-	# ------------------------
+            xi.append(a*s.x[ip1] + (1.0-a)*s.x[i])
+            for j in range(1, s.dim):
+                xi.append(a*s.x[ip1+j*s.n]+(1.0-a)*s.x[i+j*s.n])
+	
+        # ------------------------
 	# Interpolacion cúbica C1
 	# ------------------------
         elif p == 1:
-        ip1: np.int32 = i+1
-        ip2: np.int32 = i+2
-        if i == s.n-1:
-            ip1 = 0
-            ip2 = 1
-        if i == s.n-2:
-            ip2 = 0
-        im1: np.int32 = i - 1
-        if i == 0:
-            im1 = s.n-1
-        am1: np.float64 = a + 1.0
-        ap1: np.float64 = 1.0 -a
-        ap2: np.float64 = 2.0 -a
-        z: np.float64 = 1.0 -2.5*ap1 + 1.5*ap1*ap1*ap1
-        zp1: np.float64 = 1.0 - 2.5*ap1*ap1 + 1.5*ap1*ap1*ap1
-        zp2: np.float64 = 0.5*(2.0-ap2)*(2.0-ap2)*(1.0-ap2)
-        zm1: np.float64 = 0.5*(2.0-am1)*(2.0.am1)*(1.0-am1)
-        xi.append(zp1*s.x[ip1]+z*s, x[i]+zp2*s.x[ip2]+sm1*s.x[im1])
-        for j in range(1, s.dim):
-            xi.append(zp1*s.x[ip1 + j*s.n] + z*s.x[i + j*s.n]+zp2*s.x[ip2+j*s.n]+ zm1*s.x[im1 + j*s.n])
+            ip1:np.int32 = i+1
+            ip2:np.int32 = i+2
+            if i == s.n-1:
+                ip1 = 0
+                ip2 = 1
+            if i == s.n-2:
+                ip2 = 0
+            im1:np.int32 = i - 1
+            if i == 0:
+                im1 = s.n-1
+            am1:np.float64 = a + 1.0
+            ap1:np.float64 = 1.0 - a
+            ap2:np.float64 = 2.0 - a
+            z:np.float64 = 1.0 - 2.5*a*a + 1.5*a*a*a
+            zp1:np.float64 = 1.0 - 2.5*ap1*ap1 + 1.5*ap1*ap1*ap1
+            zp2:np.float64 = 0.5*(2.0-ap2)*(2.0-ap2)*(1.0-ap2)
+            zm1:np.float64 = 0.5*(2.0-am1)*(2.0-am1)*(1.0-am1)
+            xi.append(zp1*s.x[ip1]+z*s.x[i]+zp2*s.x[ip2]+zm1*s.x[im1])
+            for j in range(1, s.dim):
+                xi.append(zp1*s.x[ip1 + j*s.n] + z*s.x[i + j*s.n]+zp2*s.x[ip2+j*s.n]+ zm1*s.x[im1 + j*s.n])
 
         # --------------------------
         # Interpolacion quintica C2 
         # --------------------------
-    elif p == 2 :
-        ip1:np.int32 = i + 1
-        ip2:np.int32 = i + 2
-        ip3:np.int32 = i + 3
-        if i == s.n-1:
-            ip1 = 0
-            ip2 = 1
-            ip3 = 2
-        if i == s.n-2:
-            ip2 = 0
-            ip3 = 1
-        if i == s.n-3:
-            ip3 = 0
-        im1:np.int32 = i-1
-        im2:np.int32 = i-2
-        if i == 0:
-            im1 = s.n-1
-            im2 = s.n-2
-        if i == 1:
-            im2  s.n-1
-        u12:np.float64 = 1.0/12.0
-        am1:np.float64 = a + 1.0
-        am2:np.float64 = a + 2.0
-        ap1:np.float64 = 1.0 - a
-        ap2:np.float64 = 2.0 - a
-        ap3:np.float64 = 3.0 - a
-        z:np.float64 = 1.0 + a*a*u12(-15.0+ a*(-35.0+ a*(63.0+ a*(-25.0))))
-        zp1:np.float64 = 1.0 + ap1*ap1*u12*(-15.0 + ap1*(-35.0 + ap1*(63.0 + ap1(-25.0))))
-        zp2:np.float64 = -4.0 + u12*ap2*(225.0 + ap2*(-367.5 + ap2*(272.5 + ap2*(-94.5 + 12.5 * ap2))))
-        zp3:np.float64 = 18.0 + u12*ap3*(-459.0 + ap3*(382.5 + ap3*(-156.5 + ap3*(31.5 - 2.5*ap3))))
-        zm1:np.float64 = -4.0 + u12*am1+(225.0 + am1*(-367.5 +am1*(272.5+am1*(-94.5 +  12.5*am1))))
-        zm2: np.float64 = 18.0 + u12* am2*(-459 + am2*(382.5 + am2*(-156.5 + am2*(31.5 -2.5*am2))))
+        elif p == 2:
+            ip1:np.int32 = i + 1
+            ip2:np.int32 = i + 2
+            ip3:np.int32 = i + 3
+            if i == s.n-1:
+                ip1 = 0
+                ip2 = 1
+                ip3 = 2
+            if i == s.n-2:
+                ip2 = 0
+                ip3 = 1
+            if i == s.n-3:
+                ip3 = 0
+            im1:np.int32 = i-1
+            im2:np.int32 = i-2
+            if i == 0:
+                im1 = s.n-1
+                im2 = s.n-2
+            if i == 1:
+                im2 = s.n-1
+            u12:np.float64 = 1.0/12.0
+            am1:np.float64 = a + 1.0
+            am2:np.float64 = a + 2.0
+            ap1:np.float64 = 1.0 - a
+            ap2:np.float64 = 2.0 - a
+            ap3:np.float64 = 3.0 - a
+            z:np.float64 = 1.0 + a*a*u12*(-15.0+ a*(-35.0+ a*(63.0+ a*(-25.0))))
+            zp1:np.float64 = 1.0 + ap1*ap1*u12*(-15.0 + ap1*(-35.0 + ap1*(63.0 + ap1*(-25.0))))
+            zp2:np.float64 = -4.0 + u12*ap2*(225.0 + ap2*(-367.5 + ap2*(272.5 + ap2*(-94.5 + 12.5 * ap2))))
+            zp3:np.float64 = 18.0 + u12*ap3*(-459.0 + ap3*(382.5 + ap3*(-156.5 + ap3*(31.5 - 2.5*ap3))))
+            zm1:np.float64 = -4.0 + u12*am1+(225.0 + am1*(-367.5 +am1*(272.5+am1*(-94.5 +  12.5*am1))))
+            zm2:np.float64 = 18.0 + u12* am2*(-459 + am2*(382.5 + am2*(-156.5 + am2*(31.5 -2.5*am2))))
+            xi.append(zp1*s.x[ip1]+z*s.x[i]+zp2*s.x[ip2]+zp3*s.x[ip3]+zm1*s.x[im1]+zm2*s.x[im2])
+            for j in range(1, s.dim):
+                xi.append(zp1*s.x[ip1+j*s.n]+z*s.x[i+j*s.n]+zp2*s.x[ip2+j*s.n]+zp3*s.x[ip3+j*s.n]+zm1*s.x[im1+j*s.n]+zm2*s.x[im2+j*s.n])
+       
+        else:
+            print("La suavidad debe ser 0, 1, o 2")
+        
+        return xi
 
+# ---------------------------------------------------------------------------------
+#   Función zspline crea el Z-spline de un conjunto de puntos de dim dimensiones,
+#   n segmentos y continua (aproximacion), cont
+#   x,y = zspline(conjunto de puntos, dimension, numero de segmentos, continuidad)
+# ----------------------------------------------------------------------------------
+def zspline(puntos, dim, n, cont):
+
+    curva = Curva(puntos, dim)
+    dx:np.float64 = 1.0/float(n)
+    x = np.zeros(n, dtype = np.float64)
+    y = np.zeros(n, dtype = np.float64)
+
+    for i in range(0, n):
+        r:np.float64 = float(i)*dx
+        [x[i],y[i]] = curva.interpolacion(cont,r)
+
+    return x,y
 
 
