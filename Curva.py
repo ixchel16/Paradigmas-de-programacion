@@ -25,7 +25,7 @@ class Curva:
         
         s.x = np.array(x, dtype=np.float64)
         s.dim = dim
-        s.n:nop.int32 = int(len(s.x)/s.dim)   #Número de punto
+        s.n:np.int32 = int(len(s.x)/s.dim)   #Número de punto
         s.l = []                               #Longitud sobre la curva
         s.lista_de_puntos()
         s.longitud()
