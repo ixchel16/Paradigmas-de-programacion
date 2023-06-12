@@ -148,7 +148,7 @@ class Curva:
             zp1:np.float64 = 1.0 + ap1*ap1*u12*(-15.0 + ap1*(-35.0 + ap1*(63.0 + ap1*(-25.0))))
             zp2:np.float64 = -4.0 + u12*ap2*(225.0 + ap2*(-367.5 + ap2*(272.5 + ap2*(-94.5 + 12.5 * ap2))))
             zp3:np.float64 = 18.0 + u12*ap3*(-459.0 + ap3*(382.5 + ap3*(-156.5 + ap3*(31.5 - 2.5*ap3))))
-            zm1:np.float64 = -4.0 + u12*am1+(225.0 + am1*(-367.5 +am1*(272.5+am1*(-94.5 +  12.5*am1))))
+            zm1:np.float64 = -4.0 + u12*am1*(225.0 + am1*(-367.5 +am1*(272.5+am1*(-94.5 +  12.5*am1))))
             zm2:np.float64 = 18.0 + u12* am2*(-459 + am2*(382.5 + am2*(-156.5 + am2*(31.5 -2.5*am2))))
             xi.append(zp1*s.x[ip1]+z*s.x[i]+zp2*s.x[ip2]+zp3*s.x[ip3]+zm1*s.x[im1]+zm2*s.x[im2])
             for j in range(1, s.dim):
@@ -162,6 +162,7 @@ class Curva:
 # ---------------------------------------------------------------------------------
 #   Función zspline crea el Z-spline de un conjunto de puntos de dim dimensiones,
 #   n segmentos y continua (aproximacion), cont
+
 #   x,y = zspline(conjunto de puntos, dimension, numero de segmentos, continuidad)
 # ----------------------------------------------------------------------------------
 def zspline(puntos, dim, n, cont):
