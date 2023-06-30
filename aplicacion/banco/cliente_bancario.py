@@ -1,7 +1,6 @@
-#======================
-# Clase ClienteBancario 
-# ======================
-
+#=========================
+# Clase ClienteBancario
+#=========================
 class ClienteBancario:
     __nombres:str = None
     __apellidos:str = None
@@ -20,16 +19,15 @@ class ClienteBancario:
         return self.nombres + " " + self.apellidos
 
     def __mandarEmail(self, titulo:str, texto:str) -> None:
-        print("mandar email: "+ titulo + "con texto: "+ texto)
- 
-    def __enviarBalanceAlAbanco(self, cantidad:float) -> None:
-        print("Enviando cantidad: " + str(cantidad)+ "al banco. . .") 
+        print("mandar email: " + titulo +" con texto : " + texto)
 
-    # ------------------------------------------
-    # Método privado con dos guiones bajos
-    # si la edad es menor que 18 genera un error
-    # ------------------------------------------
-    
+    def __enviarBalanceAlBanco(self, cantidad:float) -> None:
+        print("Enviando cantidad " + str(cantidad) + " al banco...")
+
+    # ---------------------------------------------
+    #  Método privado con dos guiones bajos
+    #  Si la edad es menor que 18 genera un error
+    # ---------------------------------------------
     def __validarEdad(self, edad:int) -> None:
         if edad < 18:
             raise Exception("Es menor de edad")
@@ -37,22 +35,22 @@ class ClienteBancario:
     def imprimirInfo(self) -> str:
         return "Nombre: " + self.getNombreCompleto() + ", Edad: " + str(self.__edad) + ", Balance: " + str(self.__balanceDeCuenta)
 
-    # -----------------------------------------------
-    # Métodoo privado que checa si el balance es negativo
-    # y genera un error
-    # ----------------------------------------------
+    # ------------------------------------------------------
+    #  Método privado que checa si el balance es negativo  
+    #  y genera un error
+    # ------------------------------------------------------
     def __validarCantidad(self, balanceDeCuenta:float) -> None:
         if balanceDeCuenta < 0:
             raise Exception("El balance en la cuenta no puede ser negativo")
 
     def guardarDinero(self, cantidad:float) -> None:
         self.__balanceDeCuenta = self.__balanceDeCuenta + cantidad
-        self.__mandarEmail("- - - - guardar depósito - - - -", "se recibieron " + str(cantidad))
+        self.__mandarEmail("- - - - guardando depósito - - - -"," se recibieron " + str(cantidad))
         self.__enviarBalanceAlBanco(cantidad)
 
     def retirarDinero(self, cantidad:float) -> None:
         cantidadFinal = self.__balanceDeCuenta - cantidad
         self.__validarCantidad(cantidadFinal)
         self.__balanceDeCuenta = cantidadFinal
-        self.__mandarEmail("- - - - retirando dinero - - - -", "se retiró" + str(cantidad))
+        self.__mandarEmail("- - - - retirando dinero - - - -", " se retiró " + str(cantidad))
         self.__enviarBalanceAlBanco(cantidad)

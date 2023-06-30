@@ -14,7 +14,7 @@ def sumale100(numero, candado):
         # Quitar el candado
         candado.release()
         
-if __name__ = "__main__":
+if __name__ == "__main__":
     
     # Candado para evitar que ds procesos se empalmen
     candado = Lock()
@@ -26,7 +26,7 @@ if __name__ = "__main__":
     numero_compartido = Value("i", 0)
     print("Al principio vale = ", numero_compartido.value)
     p1 = Process(target=sumale100, args=(numero_compartido, candado))
-    p2 = Process(target=sumale100, args=(numero_compartido candado))
+    p2 = Process(target=sumale100, args=(numero_compartido, candado))
     p1.start()
     p2.start()
     p1.join()
