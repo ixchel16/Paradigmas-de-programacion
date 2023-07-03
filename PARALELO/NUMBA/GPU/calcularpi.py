@@ -9,7 +9,7 @@ import numpy as np
 import random
 
 @cuda.jit
-def calcularpi_kernel(rng_states, iteraciones, out):
+def calcularpi_kernel(rng_states, iteraciones, out_d):
     """Encontrar el valor máximo en value y guardarlo en resuelt[0]"""
     ii = cuda.grid(1)
     
@@ -21,7 +21,7 @@ def calcularpi_kernel(rng_states, iteraciones, out):
         y = xoroshiro128p_uniform_float64(rng_states, ii)
         if x**2 + y**2 <= 1.0:
             cae_adentro += 1
-        out[ii] = 4.0 * cae_adentro / iteraciones
+        out_d[ii] = 4.0 * cae_adentro / iteraciones
         
 # ------------------
 # Proceso para cuda
@@ -37,10 +37,12 @@ seed2 = random.seed(seed1)
 seed = random.randint(0, 1000)
 rng_states = create_xoroshiro128p_states(hilosporbloque*bloques, seed)
 out = np.zeros(hilosporbloque*bloques, dtype=np.float64)
+out_d = cuda.to_device(out)
 
 # ----------------------
 #  Llamar a la función
 # ----------------------
-calcularpi_kernel[bloques, hilosporbloque](rng_states, 10000, out)
+calcularpi_kernel[bloques, hilosporbloque](rng_states, 10000, out_d)
+out_d.copy_to_host(out)
 print("pi: ", out.mean())
 
